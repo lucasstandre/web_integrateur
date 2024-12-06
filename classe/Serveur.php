@@ -3,15 +3,20 @@
 class Serveur
 {
     private $_server_id;
-    private $_brand_id;
+    private $_marque;
     private $_model;
-    private $_formFactor_id;
-    private $_Os_id;
-    private $_CPU_id;
+    private $_formFactor;
+    private $_Os;
+    private $_CPU_brand;
+    private $_CPU_model;
+    private $_CPU_baseClockSpeed;
     private $_CPUCount;
-    private $_RAM_id;
+    private $_RAM_capacity;
+    private $_RAM_frequency;
     private $_RAMCount;
-    private $_storage_id;
+    private $_storage_capacity;
+    private $_storage_interface;
+    private $_storage_type;
     private $_storageCount;
     private $_description;
     private $_price;
@@ -27,6 +32,9 @@ class Serveur
             }   
         }
     }
+    
+    
+
     /**
      * Get the value of _server_id
      */ 
@@ -48,21 +56,21 @@ class Serveur
     }
 
     /**
-     * Get the value of _brand_id
+     * Get the value of _marque
      */ 
-    public function get_brand_id()
+    public function get_marque()
     {
-        return $this->_brand_id;
+        return $this->_marque;
     }
 
     /**
-     * Set the value of _brand_id
+     * Set the value of _marque
      *
      * @return  self
      */ 
-    public function set_brand_id($_brand_id)
+    public function set_marque($_marque)
     {
-        $this->_brand_id = $_brand_id;
+        $this->_marque = $_marque;
 
         return $this;
     }
@@ -88,61 +96,103 @@ class Serveur
     }
 
     /**
-     * Get the value of _formFactor_id
+     * Get the value of _formFactor
      */ 
-    public function get_formFactor_id()
+    public function get_formFactor()
     {
-        return $this->_formFactor_id;
+        return $this->_formFactor;
     }
 
     /**
-     * Set the value of _formFactor_id
+     * Set the value of _formFactor
      *
      * @return  self
      */ 
-    public function set_formFactor_id($_formFactor_id)
+    public function set_formFactor($_formFactor)
     {
-        $this->_formFactor_id = $_formFactor_id;
+        $this->_formFactor = $_formFactor;
 
         return $this;
     }
 
     /**
-     * Get the value of _Os_id
+     * Get the value of _Os
      */ 
-    public function get_Os_id()
+    public function get_Os()
     {
-        return $this->_Os_id;
+        return $this->_Os;
     }
 
     /**
-     * Set the value of _Os_id
+     * Set the value of _Os
      *
      * @return  self
      */ 
-    public function set_Os_id($_Os_id)
+    public function set_Os($_Os)
     {
-        $this->_Os_id = $_Os_id;
+        $this->_Os = $_Os;
+
+        return $this;
+    }
+
+    
+
+    /**
+     * Get the value of _CPU_brand
+     */ 
+    public function get_CPU_brand()
+    {
+        return $this->_CPU_brand;
+    }
+
+    /**
+     * Set the value of _CPU_brand
+     *
+     * @return  self
+     */ 
+    public function set_CPU_brand($_CPU_brand)
+    {
+        $this->_CPU_brand = $_CPU_brand;
 
         return $this;
     }
 
     /**
-     * Get the value of _CPU_id
+     * Get the value of _CPU_model
      */ 
-    public function get_CPU_id()
+    public function get_CPU_model()
     {
-        return $this->_CPU_id;
+        return $this->_CPU_model;
     }
 
     /**
-     * Set the value of _CPU_id
+     * Set the value of _CPU_model
      *
      * @return  self
      */ 
-    public function set_CPU_id($_CPU_id)
+    public function set_CPU_model($_CPU_model)
     {
-        $this->_CPU_id = $_CPU_id;
+        $this->_CPU_model = $_CPU_model;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _CPU_baseClockSpeed
+     */ 
+    public function get_CPU_baseClockSpeed()
+    {
+        return $this->_CPU_baseClockSpeed;
+    }
+
+    /**
+     * Set the value of _CPU_baseClockSpeed
+     *
+     * @return  self
+     */ 
+    public function set_CPU_baseClockSpeed($_CPU_baseClockSpeed)
+    {
+        $this->_CPU_baseClockSpeed = $_CPU_baseClockSpeed;
 
         return $this;
     }
@@ -168,21 +218,41 @@ class Serveur
     }
 
     /**
-     * Get the value of _RAM_id
+     * Get the value of _RAM_capacity
      */ 
-    public function get_RAM_id()
+    public function get_RAM_capacity()
     {
-        return $this->_RAM_id;
+        return $this->_RAM_capacity;
     }
 
     /**
-     * Set the value of _RAM_id
+     * Set the value of _RAM_capacity
      *
      * @return  self
      */ 
-    public function set_RAM_id($_RAM_id)
+    public function set_RAM_capacity($_RAM_capacity)
     {
-        $this->_RAM_id = $_RAM_id;
+        $this->_RAM_capacity = $_RAM_capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _RAM_frequency
+     */ 
+    public function get_RAM_frequency()
+    {
+        return $this->_RAM_frequency;
+    }
+
+    /**
+     * Set the value of _RAM_frequency
+     *
+     * @return  self
+     */ 
+    public function set_RAM_frequency($_RAM_frequency)
+    {
+        $this->_RAM_frequency = $_RAM_frequency;
 
         return $this;
     }
@@ -208,21 +278,61 @@ class Serveur
     }
 
     /**
-     * Get the value of _storage_id
+     * Get the value of _storage_capacity
      */ 
-    public function get_storage_id()
+    public function get_storage_capacity()
     {
-        return $this->_storage_id;
+        return $this->_storage_capacity;
     }
 
     /**
-     * Set the value of _storage_id
+     * Set the value of _storage_capacity
      *
      * @return  self
      */ 
-    public function set_storage_id($_storage_id)
+    public function set_storage_capacity($_storage_capacity)
     {
-        $this->_storage_id = $_storage_id;
+        $this->_storage_capacity = $_storage_capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _storage_interface
+     */ 
+    public function get_storage_interface()
+    {
+        return $this->_storage_interface;
+    }
+
+    /**
+     * Set the value of _storage_interface
+     *
+     * @return  self
+     */ 
+    public function set_storage_interface($_storage_interface)
+    {
+        $this->_storage_interface = $_storage_interface;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _storage_type
+     */ 
+    public function get_storage_type()
+    {
+        return $this->_storage_type;
+    }
+
+    /**
+     * Set the value of _storage_type
+     *
+     * @return  self
+     */ 
+    public function set_storage_type($_storage_type)
+    {
+        $this->_storage_type = $_storage_type;
 
         return $this;
     }

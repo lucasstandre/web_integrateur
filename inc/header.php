@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 } 
 include_once("classe/PDOFactory.php");
+require_once 'classe/Serveur.php';
+require_once 'classe/ServeurManager.php';
 
 $bdd = PDOFactory::getMySQLConnection();
 

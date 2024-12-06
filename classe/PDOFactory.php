@@ -1,5 +1,5 @@
 <?php
-  define('MYSQL_SERVER', 'mysql:host=localhost;dbname=dbLocation;charset=utf8');
+  define('MYSQL_SERVER', 'mysql:host=localhost;dbname=dbserver;charset=utf8');
   define('SQL_USER', 'root');
   define('SQL_PASS', '');
 

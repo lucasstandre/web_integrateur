@@ -1,5 +1,6 @@
-<?php include_once("inc/header.php"); ?>
-
+<?php include_once("inc/header.php"); 
+$serveurManager = new serveurManager($bdd);
+$serveurs = $serveurManager->getServeur();?>
     <div class="comparaison">
     <table class="comparaisonImage" border>
         <tr>
