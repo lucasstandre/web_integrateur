@@ -19,7 +19,18 @@ main {
 
 
 /* Page comparaison */
+.comparaisonImage{
+    border: 1px black solid;
+    margin: auto; 
+    width: 90%;
 
+}
 .comparaison{
-
+    border: 1px black solid;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+tr, td {
+    border: 1px black solid;
 }

@@ -4,7 +4,7 @@ class ServeurManager
 {
     private $_bdd;
     const SELECT_ALL_SERVEURS = "SELECT server_id, 
-                                        b.name AS marque, b.lineUp AS model, 
+                                        b.name AS marque, s.model, b.lineUp,
                                         f.name AS formFactor, o.name AS Os, 
                                         cb.name AS CPU_brand, c.model AS CPU_model, c.baseClockSpeed AS CPU_baseClockSpeed, CPUCount, 
                                         r.capacity AS RAM_capacity, r.frequency AS RAM_frequency, RAMCount, 

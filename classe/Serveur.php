@@ -5,6 +5,7 @@ class Serveur
     private $_server_id;
     private $_marque;
     private $_model;
+    private $_lineUp;
     private $_formFactor;
     private $_Os;
     private $_CPU_brand;
@@ -32,7 +33,7 @@ class Serveur
             }   
         }
     }
-    
+
     
 
     /**
@@ -71,6 +72,26 @@ class Serveur
     public function set_marque($_marque)
     {
         $this->_marque = $_marque;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of _lineUp
+     */ 
+    public function get_lineUp()
+    {
+        return $this->_lineUp;
+    }
+
+    /**
+     * Set the value of _lineUp
+     *
+     * @return  self
+     */ 
+    public function set_lineUp($_lineUp)
+    {
+        $this->_lineUp = $_lineUp;
 
         return $this;
     }
