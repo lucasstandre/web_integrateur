@@ -22,6 +22,3 @@ $bdd = PDOFactory::getMySQLConnection();
 </head>
 
 <body>
-
-<main>
-    <nav></nav>
