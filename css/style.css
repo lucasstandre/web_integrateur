@@ -34,3 +34,52 @@ main {
 tr, td {
     border: 1px black solid;
 }
+
+section {
+    display: grid;
+    grid-template-areas: ".panier .prix";
+    grid-template-columns: 70% 5%;
+    grid-template-rows: 90%;
+}
+
+div.panier {
+    background-color: #353535;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    gap: 2%;
+    overflow-x: scroll;
+}
+
+/* div.panier article.produit {
+
+} */
+
+div.panier article.produit img {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+article.produit {
+    background-color: #156082;
+    border: 0.25px solid black;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 3fr 1fr 1fr;
+}
+
+.button {
+    grid-row-start: 5;
+}
+
+button.btnModifier, button.btnSupprimer {
+    width: 90%;
+    background-color: white;
+    color: black;
+}
+
+div.prix {
+    grid-column-end: 4;
+}
