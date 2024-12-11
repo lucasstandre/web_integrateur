@@ -8,17 +8,14 @@
 
 
 * {
-margin: 0;
-padding: 0;
 word-wrap: break-word;
-color: var(--grisfonce);
 font-family: 'CascadiaMono';
 
 }
 
 @font-face {
 font-family: 'CascadiaMono'; /* Name your font family */
-src: url('ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your directory*/
+src: url('../ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your directory*/
 }
   
 
@@ -264,8 +261,10 @@ src: url('ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your dir
 .config-item select {
     width: 100%;
 }
-  }
   
+}
+
+
 
 /* General Styles */
 .hidden {
@@ -296,7 +295,7 @@ h1 {
   padding: 20px;
   box-sizing: border-box;
   background: #002E4D;
-  color: white;
+  color: var(--blanc);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -385,7 +384,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 }
 .slide a {
   text-decoration: none;
-  color: inherit;
+  color: var(--blanc);
 }
 .toggle {
   position: relative;
@@ -667,6 +666,67 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
       color: #555; /* Change la couleur du texte au survol */
       border-bottom: 2px solid #555; /* Ajoute une bordure en bas du lien au survol */
     }
+
+}
+.slide button{
+  
+}
+.button_Inventaire {
+  height: 50px;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.button_Inventaire:hover {
+  box-shadow: .5px .5px 150px #252525;
+}
+
+.type1::after {
+  content: attr(data-content);
+  height: 50px;
+  width: 150px;
+  background-color: var(--turquoise);
+  color: #fff;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(50px);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1::before {
+  content: "Comparer";
+  height: 50px;
+  width: 150px;
+  background-color: #fff;
+  color: var(--turquoise);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(0px) scale(1.2);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1:hover::after {
+  transform: translateY(0) scale(1.2);
+}
+
+.type1:hover::before {
+  transform: translateY(-50px) scale(0) rotate(120deg);
 }
 /* Configuration Buttons */
 .configurator {
@@ -712,11 +772,6 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 }
 
 /********** Page comparaison ************/
-:root {
-  --gray: #353535;
-  --blue: #284B63;
-  --lightBlue: #3C6E71;
-}
 #comparaison > *{
   border-collapse: collapse;
   text-align: center;
@@ -743,14 +798,13 @@ tr, td {
 }
 
 th{
-  background-color: var(--blue);
+  background-color: var(--bleu);
   color: white;
 }
 #compButtons{
   background-color: white;
   border: 1px black solid;
   width: 100%;
-  max-width: 980px;
   bottom:0px;
   height:75px;
   position: fixed;
@@ -760,7 +814,7 @@ th{
   display: flex;
 }
 #compButtons div button{
-  background-color: var(--blue);
+  background-color: var(--bleu);
   border: 1px black solid;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -768,7 +822,7 @@ th{
 }
 #btn-Couleur{
   position: absolute;
-  background-color: var(--blue);
+  background-color: var(--bleu);
   border: 1px black solid;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -803,7 +857,7 @@ th{
   }
   
   #image td{
-      background-color: var(--blue);
+      background-color: var(--bleu);
       padding: 20px;
       margin: 5px;
   }
@@ -811,7 +865,6 @@ th{
       background-color: white;
       border: 1px black solid;
       position:relative;
-      max-width: 980px;
       bottom:0px;
       height: auto;
       position: fixed;
@@ -842,4 +895,187 @@ th{
 body{
   min-width:980px;
 }
+}
+
+/********* Index.php ***********/
+#imgServeur{
+  width: 100%;
+}
+.index{
+  min-height: 95vh;
+  background-image:url(../img/serveur.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  animation-name: switch1;
+  animation-iteration-count: infinite;
+   animation-delay: -3s;
+   animation-duration: 15s;
+}
+@keyframes switch1 {
+  0% {
+     background-image: url(../img/serveur.webp);
+  }
+  11% {
+    background-image: url(../img/fond2.jpg);
+  }
+  33% {
+     background-image: url(../img/fond2.jpg);
+  }
+  44% {
+    background-image: url(../img/fond1.jpeg);
+  }
+  66% {
+     background-image: url(../img/fond1.jpeg);
+  }
+  77% {
+     background-image: url(../img/serveur.webp);
+  }
+  100% {
+     background-image: url(../img/serveur.webp);
+  }
+}
+.titre{
+  max-width: fit-content;
+  background-color: white;
+  margin: 0px;
+  padding: 5px;
+  size: 1250%;
+}
+.buttonIndex{
+  padding:15px;
+  margin: 10px;
+  right: 0px;
+}
+
+
+
+.pagePanier section {
+  display: grid;
+  grid-template-areas: ".panier .prix";
+  grid-template-columns: 70% 5%;
+  height: 80%;
+  color: var(--blanc);
+}
+
+.pagePanier section button {
+  border-radius: 15px;
+}
+
+.pagePanier div ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 0%;
+}
+
+div.panier {
+  margin-left: 5%;
+  padding: 1%;
+  background-color: var(--grisfonce);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 100%;
+  gap: 10%;
+  overflow-x: scroll;
+}
+
+article.produit {
+  width: 140%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--bleu);
+  border: 0.25px solid black;
+  display: grid;
+  grid-template-rows: 3fr 0fr 2fr 8fr 2fr;
+}
+
+div.panier article.produit img {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+div.panier article.produit li, p {
+  color: var(--blanc);
+  margin-top: 20px;
+}
+
+.button {
+  grid-row-start: 6;
+}
+
+button.btnModifier, button.btnSupprimer {
+  width: 90%;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 2px;
+}
+
+div.prix {
+  grid-column-end: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.prix ul li {
+  border: 1px solid var(--grisfonce);
+  padding: 5px;
+}
+
+div.prix button#btnPaiement {
+  background-color: var(--bleu);
+  padding: 10px;
+  margin: 10px;
+}
+
+div.prix button#btnPaiement strong {
+  color: var(--blanc);
+}
+
+#formPanier {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+}
+
+#formPanier fieldset {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 3fr 9fr 3fr 9fr;
+  gap: 10%;
+  background-color: var(--bleu);
+  border: 1px solid var(--grisfonce);
+  padding: 40px;
+  padding-top: 10px;
+}
+
+#formPanier legend {
+  color: var(--blanc);
+  border: 1px solid var(--grisfonce);
+  background-color: var(--bleu);
+  padding: 2px;
+}
+
+#formPanier label {
+  color: var(--blanc);
+}
+
+#btnModifier {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 2px;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
