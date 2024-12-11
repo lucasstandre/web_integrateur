@@ -3,15 +3,22 @@
 $vm = new ServeurManager(PDOFactory::getMySQLConnection());
 ?>
 
-  <title>Server Slider with Filter</title>
-
+<!DOCTYPE html>
 <div>
     <h1>Votre serveur, notre expertise.</h1>
 </div>
   <?php 
   $serveurs = $vm->getServeur();
   $marques_filtre = $vm->getMarque();
+  $comparerCookie = isset($_COOKIE['comparer']) ? $_COOKIE['comparer'] : '';
+  $comparerArray = [];
 
+  if ($comparerCookie){
+    $comparerArray = json_decode($comparerCookie, true);
+    if (!is_array($comparerArray)){
+      $comparerArray = [];
+    }
+  }
   
   ?>
 
@@ -25,13 +32,27 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
         $model = $serveur->get_model();
         $price = $serveur->get_price();
         $imgName = $serveur->get_imgName();
+        $server_id = $serveur->get_server_id();
+
+        if (in_array($server_id, $comparerArray)) {
+          $count = count($comparerArray);
+          if ($count == 1) {
+              $dataContent = "1/2";
+          } elseif ($count >= 2) {
+              $dataContent = "2/2";
+          }
+      } else {
+          $dataContent = "Ajouter";
+      }
+
         echo "<div class='slide' data-brand='$marque' data-price='$price'>
         <a href='produit.php?id={$serveur->get_server_id()}'>
         <img src='./img/$imgName' alt='$model'>
         <h3>$model</h3>
         <p>$marque</p>
-        <p>Starting at $$price</p>
+        <p>Starting at $price $</p>
         </a>
+        <button class='button_Inventaire type1' onclick='comparer($server_id)' data-content='$dataContent'></button>
         </div>"; 
       }
 

@@ -1,7 +1,7 @@
 <?php
   define('MYSQL_SERVER', 'mysql:host=127.0.0.1;dbname=dbServer;charset=utf8');
-  define('SQL_USER', 'samit');
-  define('SQL_PASS', 'samit');
+  define('SQL_USER', 'root');
+  define('SQL_PASS', '');
 
   class PDOFactory {
     // Dans le cas où la base de données serait en MySQL (est utilisé ici).

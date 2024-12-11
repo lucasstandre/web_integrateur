@@ -8,10 +8,7 @@
 
 
 * {
-margin: 0;
-padding: 0;
 word-wrap: break-word;
-color: var(--grisfonce);
 font-family: 'CascadiaMono';
 
 }
@@ -199,8 +196,10 @@ src: url('ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your dir
 .config-item select {
     width: 100%;
 }
-  }
   
+}
+
+
 
 /* General Styles */
 .hidden {
@@ -231,7 +230,7 @@ h1 {
   padding: 20px;
   box-sizing: border-box;
   background: #002E4D;
-  color: white;
+  color: var(--blanc);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -320,7 +319,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 }
 .slide a {
   text-decoration: none;
-  color: inherit;
+  color: var(--blanc);
 }
 .toggle {
   position: relative;
@@ -522,6 +521,67 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
       color: #555; /* Change la couleur du texte au survol */
       border-bottom: 2px solid #555; /* Ajoute une bordure en bas du lien au survol */
     }
+
+}
+.slide button{
+  
+}
+.button_Inventaire {
+  height: 50px;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.button_Inventaire:hover {
+  box-shadow: .5px .5px 150px #252525;
+}
+
+.type1::after {
+  content: attr(data-content);
+  height: 50px;
+  width: 150px;
+  background-color: var(--turquoise);
+  color: #fff;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(50px);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1::before {
+  content: "Comparer";
+  height: 50px;
+  width: 150px;
+  background-color: #fff;
+  color: var(--turquoise);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(0px) scale(1.2);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1:hover::after {
+  transform: translateY(0) scale(1.2);
+}
+
+.type1:hover::before {
+  transform: translateY(-50px) scale(0) rotate(120deg);
 }
 /* Configuration Buttons */
 .configurator {
