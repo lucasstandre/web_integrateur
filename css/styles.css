@@ -646,7 +646,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 
 #marque{
   position:sticky;
-  top: 10px;
+  top: 25x;
 }
 tr, td {
   border: 1px black solid;
@@ -673,7 +673,7 @@ th{
   border: 1px black solid;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 16.66%;
+  width: 20%;
 }
 #btn-Couleur{
   position: absolute;
@@ -684,6 +684,9 @@ th{
   width: 100%;
   color: white;
 
+}
+.description td{
+width: 33%;
 }
 #compButtons a{
   color: white;

@@ -168,16 +168,19 @@ window.comparer = function(id){
       comparerArray.push(id);
       setCookie('comparer', JSON.stringify(comparerArray), 1);
       updateButtonContent(id, comparerArray.length);
+      console.log(comparerArray);
+
       // Redirect to comparaison.php
-      window.location.href = 'comparaison.php';
+      window.location.href = 'comparaison.php?comp1=' + comparerArray[0] + '&comp2=' + comparerArray[1];
   } else if (comparerArray.length >= 2) {
       // Already two items, replace the last one with the new id and redirect
       comparerArray.pop(); // Remove last item
       comparerArray.push(id); // Add new item
+      console.log(comparerArray);
       setCookie('comparer', JSON.stringify(comparerArray), 1);
       updateButtonContent(id, comparerArray.length);
       // Redirect to comparaison.php
-      window.location.href = 'comparaison.php';
+      window.location.href = 'comparaison.php?comp1=' + comparerArray[0] + '&comp2=' + comparerArray[1];
   }
   
   // Handle invalid cookie states (e.g., more than 2 items)
@@ -241,30 +244,4 @@ function updateButtonContent(id, count) {
       });
   }
 })();}
-if (document.URL.includes("inventaire.php")) {
-document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
-
-function modeCouleur(){
-    let div = document.getElementById("comparaison").children;
-    
-    for(let i = 0; i <div.length; i++) { 
-        let tr = div[i].children[0].children;
-        for(let i = 0; i <tr.length; i++) {
-            if(tr[i].classList.contains("couleur")){
-                let td = tr[i].children;
-                let nb1 = Number(td[0].innerHTML);
-                let nb2 = Number(td[2].innerHTML);
-                if(nb1 > nb2){
-                    td[0].classList.toggle("vert");
-                    td[2].classList.toggle("rouge");
-                }else if(nb2 > nb1){
-                    td[2].classList.toggle("vert");
-                    td[0].classList.toggle("rouge");
-                }else{
-                    td[2].classList.toggle("gray");
-                    td[0].classList.toggle("gray");
-                }
-            }
-        }
-    }
-}}});
+});
