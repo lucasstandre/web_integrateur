@@ -565,3 +565,136 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
   display: inline-block;
   font-size: 1.2em;
 }
+
+/********** Page comparaison ************/
+:root {
+  --gray: #353535;
+  --blue: #284B63;
+  --lightBlue: #3C6E71;
+}
+#comparaison > *{
+  border-collapse: collapse;
+  text-align: center;
+  margin: auto;
+  width: 85%;
+  margin-bottom:15px;
+  background-color: white;
+}
+
+#image img{
+  width: 100%;
+  max-width: 300px;
+}
+#image td{
+  margin: 5px;
+}
+
+#marque{
+  position:sticky;
+  top: 10px;
+}
+tr, td {
+  border: 1px black solid;
+}
+
+th{
+  background-color: var(--blue);
+  color: white;
+}
+#compButtons{
+  background-color: white;
+  border: 1px black solid;
+  width: 100%;
+  max-width: 980px;
+  bottom:0px;
+  height:75px;
+  position: fixed;
+}
+#compButtons div{
+  width: 100%;
+  display: flex;
+}
+#compButtons div button{
+  background-color: var(--blue);
+  border: 1px black solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 16.66%;
+}
+#btn-Couleur{
+  position: absolute;
+  background-color: var(--blue);
+  border: 1px black solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  color: white;
+
+}
+#compButtons a{
+  color: white;
+  text-decoration: none;
+}
+.vert{
+  background-color: green;
+}
+.rouge{
+  background-color: red;
+}
+.gray{
+  background-color:gray;
+}
+#compVide{
+  margin: auto;
+  align-items: center;
+}
+@media only screen and (min-width: 750px) {
+  body{
+      min-width:670px;
+  }
+  #image{
+      border: 1px black solid;
+      margin-bottom: 20px;
+  }
+  
+  #image td{
+      background-color: var(--blue);
+      padding: 20px;
+      margin: 5px;
+  }
+  #compButtons{
+      background-color: white;
+      border: 1px black solid;
+      position:relative;
+      max-width: 980px;
+      bottom:0px;
+      height: auto;
+      position: fixed;
+      
+  }
+  #compButtons div{
+      justify-content: center;
+  }
+  #compButtons div button{
+      margin: 5px;
+      border-radius: 10px;
+      width: 10%;
+  }
+  #compButtons > button{
+      position: absolute;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin: 5px;
+      align-self: right;
+      border-radius: 10px;
+      width: 10%;
+      bottom:0px;
+      right: 0px;
+      color: white;
+  }
+}
+@media only screen and (min-width: 1100px) {
+body{
+  min-width:980px;
+}
+}
