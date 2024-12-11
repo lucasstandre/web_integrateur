@@ -858,7 +858,6 @@ th{
 #compButtons div button{
   background-color: var(--bleu);
   border: 1px black solid;
-  padding-top: 10px;
   padding-bottom: 10px;
   width: 20%;
 }
