@@ -8,7 +8,7 @@ const startConnexion = document.getElementsByClassName("startConnexion");
 const startInscription = document.getElementById("startinscription");
 //mobile
 
-const startInscriptionM = document.getElementById("startinscriptionM");
+const startinscriptionM = document.getElementById("startinscriptionM");
 const next1M = document.getElementById("next1M");
 const next2M = document.getElementById("next2M");
 const fieldset1M = document.getElementById("inscription1M");
@@ -28,7 +28,7 @@ for (let i =0, l = startConnexion.length; i < l; i++){
     startConnexionM[i].addEventListener("click", connexionStartM);
 }
 next1M.addEventListener("click", adresseBoxM)
-startInscriptionM.addEventListener("click", inscriptionM);
+startinscriptionM.addEventListener("click", inscriptionM);
 
 //visible et notvisible pour l'animation
 function connexionStart(){ 
