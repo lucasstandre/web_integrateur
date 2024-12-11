@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+if (document.URL.includes("inventaire.php")) {
   const slider = document.querySelector('.slider');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
@@ -238,9 +239,30 @@ function updateButton(button, count) {
       updateAllButtons(comparerArray);
     }
 
+<<<<<<< HEAD
  });
 /*
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
+=======
+  // Update all comparer buttons based on comparerArray
+  comparerArray.forEach(id => {
+      updateButtonContent(id, comparerArray.length);
+  });
+
+  // Handle invalid comparer states
+  if (comparerArray.length > 2) {
+      comparerArray = comparerArray.slice(0, 2);
+      setCookie('comparer', JSON.stringify(comparerArray), 1);
+      // Update buttons accordingly
+      comparerArray.forEach(id => {
+          updateButtonContent(id, comparerArray.length);
+      });
+  }
+})();}
+if (document.URL.includes("inventaire.php")) {
+document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
+
+>>>>>>> 07f15675f05af3582b506a342d007b8432725242
 function modeCouleur(){
     let div = document.getElementById("comparaison").children;
     
@@ -264,6 +286,10 @@ function modeCouleur(){
             }
         }
     }
+<<<<<<< HEAD
   
 } A FAIRE
 */
+=======
+}}});
+>>>>>>> 07f15675f05af3582b506a342d007b8432725242
