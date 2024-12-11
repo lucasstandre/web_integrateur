@@ -1,10 +1,12 @@
 <?php include_once("inc/header.php");
+
 $serveurManager = new serveurManager($bdd);
 $serveurs = $serveurManager->getServeur();
-//if (isset($_REQUEST['comp1']) && isset($_REQUEST['comp1'])) {
-if(1 != 0){
+if (isset($_REQUEST['comp1']) && isset($_REQUEST['comp2'])) {
+    //if(1 != 0){
     $serveur1 = $serveurs[0];
     $serveur2 = $serveurs[1]; ?>
+    <script src="js/scriptComparer.js" defer></script>
     <div id="comparaison">
         <table id="image">
             <tr>
@@ -12,7 +14,6 @@ if(1 != 0){
                 <td><img src="img/<?= $serveur2->get_imgName() ?>" alt=""></td>
             </tr>
         </table>
-
         <table id="marque">
             <tr>
                 <th colspan="3">Comparaison</th>
@@ -41,9 +42,7 @@ if(1 != 0){
 
         <table id="cpu">
             <tr>
-                <th>2</th>
-                <th>CPU</th>
-                <th>1</th>
+                <th colspan="3">CPU</th>
 
             </tr>
             <tr>
@@ -57,28 +56,21 @@ if(1 != 0){
                 <td><?= $serveurs[1]->get_CPU_model() ?></td>
             </tr>
             <tr class=" couleur">
-            <td><?= $serveurs[0]->get_CPU_baseClockSpeed() ?></td>
-            <td><b>Base Clock Speed</b></td>
-            <td><?= $serveurs[1]->get_CPU_baseClockSpeed() ?></td>
+                <td><?= $serveurs[0]->get_CPU_baseClockSpeed() ?></td>
+                <td><b>Base Clock Speed</b></td>
+                <td><?= $serveurs[1]->get_CPU_baseClockSpeed() ?></td>
             </tr>
             <tr class="couleur">
                 <td><?= $serveurs[0]->get_CPUCount() ?></td>
                 <td><b>Nombre</b></td>
                 <td><?= $serveurs[1]->get_CPUCount() ?></td>
             </tr>
-            <tr class="couleur">
-                <td>1</td>
-                <td><b>Score</b></td>
-                <td>2</td>
-            </tr>
         </table>
 
         <table id="ram">
 
             <tr>
-                <th>2</th>
-                <th>RAM</th>
-                <th>1</th>
+                <th colspan="3">RAM</th>
 
             </tr>
             <tr class="couleur">
@@ -96,19 +88,12 @@ if(1 != 0){
                 <td><b>Nombre</b></td>
                 <td><?= $serveurs[1]->get_RAMCount() ?></td>
             </tr>
-            <tr class="couleur">
-                <td>1</td>
-                <td><b>Score</b></td>
-                <td>2</td>
-            </tr>
         </table>
 
         <table id="stockage">
 
             <tr>
-                <th>2</th>
-                <th>Stockage</th>
-                <th>1</th>
+                <th colspan="3">Stockage</th>
 
             </tr>
             <tr class="couleur">
@@ -131,17 +116,34 @@ if(1 != 0){
                 <td><b>Nombre</b></td>
                 <td><?= $serveurs[1]->get_storageCount() ?></td>
             </tr>
+        </table>
+        <table id="Autre">
+
+            <tr>
+                <th colspan="3">Autre</th>
+            </tr>
+            <tr>
+                <td><?= $serveurs[0]->get_price() ?></td>
+                <td><b>Prix</b></td>
+                <td><?= $serveurs[1]->get_price() ?></td>
+            </tr>
             <tr class="couleur">
-                <td>1</td>
-                <td><b>Score</b></td>
-                <td>2</td>
+                <td><?= $serveurs[0]->get_hasGPU() ?></td>
+                <td><b>Gpu</b></td>
+                <td><?= $serveurs[1]->get_hasGPU() ?></td>
+            </tr>
+            <tr class="description">
+                <td><?= $serveurs[0]->get_description() ?></td>
+                <td><b>Description</b></td>
+                <td><?= $serveurs[1]->get_description() ?></td>
             </tr>
         </table>
+        
     </div>
+    <br>
     <section id="compButtons">
         <div>
-            <button><a href="#marque">Score</a></button>
-            <button><a href="#prix">Prix</a></button>
+            <button><a href="#image">Score</a></button>
             <button><a href="#cpu">Cpu</a></button>
             <button><a href="#ram">Ram</a></button>
             <button><a href="#stockage">Stockage</a></button>
@@ -174,27 +176,30 @@ if(1 != 0){
             </form>
             <?php $serveurArray = 0;
 
-            if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'filtreComparer') {
-                $serveurArray = $serveurManager->selectModeles($_REQUEST);
-            } else {
-                $serveurArray = $serveurManager->selectAllModeles();
-            } ?>
+            $serveurArray = $serveurManager->selectModeles($_REQUEST);
+            ?>
             <h3>Selectionner un modèle</h3>
-            <form action="ajouterComparer">
-                <label for="modele">Modèle:</label>
-                <select name="modele" id="modele">
+            <form action="comparaison.php">
+                <label for="comp1">Modèle:</label>
+                <select name="comp1" id="comp1">
                     <?php
-                    foreach ($serveurArray as $serveur){
-                        echo '<option value="' . $serveur->get_server_id() . '">' . $serveur->get_model() . '</option>';    
+                    foreach ($serveurArray as $serveur) {
+                        echo '<option value="' . $serveur->get_server_id() . '">' . $serveur->get_model() . '</option>';
+                    }
+                    ?>
+                </select>
+                <label for="comp2">Modèle:</label>
+                <select name="comp2" id="comp2">
+                    <?php
+                    foreach ($serveurArray as $serveur) {
+                        echo '<option value="' . $serveur->get_server_id() . '">' . $serveur->get_model() . '</option>';
                     }
                     ?>
                 </select>
                 <button class="button" type="submit">Ajouter le produit</button>
             </form>
-            
-        </div>
-        <button hidden="true" id="btn-Couleur">Couleur</button>
 
+        </div>
     <?php
 }
     ?>

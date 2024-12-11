@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.URL.includes("inventaire.php")) {
   const slider = document.querySelector('.slider');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
@@ -222,16 +221,17 @@ function updateButton(button, count) {
        const buttonId = button.getAttribute('data-id');
        console.log(buttonId);
          if (comparerArray.length === 1) {
+            // In comparer, show as first
             button.setAttribute('data-content', '1/2');
             //console.log('1/2');
         }
         else if (comparerArray.length === 2) {
-            
+            // In comparer, show as second
             button.setAttribute('data-content', '2/2');
             //console.log('1/2');
         }
      else {
-        
+        // Not in comparer, show as available to add
         button.setAttribute('data-content', 'Ajouter');
       //  console.log('Ajouter');
     }
@@ -243,11 +243,9 @@ function updateButton(button, count) {
       updateAllButtons(comparerArray);
     }
 
- }
-});
+ });
 /*
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
-
 function modeCouleur(){
     let div = document.getElementById("comparaison").children;
     
@@ -272,5 +270,5 @@ function modeCouleur(){
         }
     }
   
-} 
-    */
+} A FAIRE
+*/
