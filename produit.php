@@ -83,7 +83,7 @@ $base_price = $serveur->get_price();
             </div>
                 <div class="description">
                 <h3>Description</h3>
-                <p><?= $serveur->get_description() ?></p>
+                <p>A server that is used as a <?= $serveur->get_formFactor()?> with <?= $serveur->get_RAM_frequency()?>Hz of ram speed and a <?= $serveur->get_storage_type()?> storage. <?= $serveur->get_description() ?></p>
                 </div>
                
             <div class="total-price">

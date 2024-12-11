@@ -221,17 +221,14 @@ function updateButton(button, count) {
        const buttonId = button.getAttribute('data-id');
        console.log(buttonId);
          if (comparerArray.length === 1) {
-            // In comparer, show as first
             button.setAttribute('data-content', '1/2');
             //console.log('1/2');
         }
         else if (comparerArray.length === 2) {
-            // In comparer, show as second
             button.setAttribute('data-content', '2/2');
             //console.log('1/2');
         }
      else {
-        // Not in comparer, show as available to add
         button.setAttribute('data-content', 'Ajouter');
       //  console.log('Ajouter');
     }

@@ -1,3 +1,4 @@
+DROP DATABASE dbServer;
 CREATE DATABASE IF NOT EXISTS dbServer DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; USE dbServer;
 CREATE TABLE IF NOT EXISTS Serveur (
 	server_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -74,7 +75,8 @@ VALUES ('Rack'),
 	('Tower');
 
 INSERT INTO ServerBrand (name, lineUp)
-VALUES ('Dell','PowerEdge');
+VALUES ('Dell','PowerEdge'),
+ ('Lenovo', 'PowerEdge');
 
 INSERT INTO OS (name)
 VALUES ('Windows Server 2022');
@@ -86,7 +88,8 @@ VALUES ('Intel'),
 INSERT INTO RAM (capacity, frequency)
 VALUES (8, 3200),
 	(16, 4800),
-	(16, 3200);
+	(16, 3200),
+	(32, 3200);
 
 INSERT INTO StorageInterface (name)
 VALUES ('SATA'),
@@ -112,7 +115,8 @@ VALUES (1, 'Pentium G7400', 3.7),
 	(1, 'Xeon Gold 6416', 2.2),
 	(2, 'EPYC 7443P', 2.85),
 	(1, 'AMD EPYC 7313', 3.0),
-	(2, 'AMD EPYC 9224', 2.5);
+	(2, 'AMD EPYC 9224', 2.5),
+	(1, 'Xeon Silver 4309Y', 2.8);
 
 INSERT INTO Serveur (brand_id, model, formFactor_id, OS_id, CPU_id, CPUCount, RAM_id, RAMCount, storage_id, storageCount, description, price, imgName, hasGPU)
 Values 
@@ -120,7 +124,6 @@ Values
 	(1, 'R250', 1, 1, 2, 1, 1, 1, 1, 1, 'Deliver powerful compute with an entry-level rackmount server. Designed to address common business applications.', 1349, 'R250.jpg', 0),
 	(1, 'R260', 1, 1, 1,1,2,1,3,1,'Designed to address entry-level compute demands of Near-Edge, Remote / Branch Office and SMB. Entreprise features and capabilities with optimal price and options', 1869,'R260.jpg',0),
 	(1, 'T150', 3, 1, 2,1,1,1,5,1, 'Delevir compute with this entry-level tower server. Reliable for fondational workloads and designed for common business needs.',1029,'T150.jpg',0),
-	(1, 'R7625', 1, 1,6,1,2,1,1,1, 'Highly scalable rack server with 50% more cores and up to 6 GPUs, combining powerful performance andflexible configuration ideal for data analytics, all flash SDS and VDI', 8099, 'R7625.jpg',0);
-
-
-dbserver
+	(1, 'R7625', 1,1,6,1,2,1,1,1, 'Highly scalable rack server with 50% more cores and up to 6 GPUs, combining powerful performance andflexible configuration ideal for data analytics, all flash SDS and VDI', 8099, 'R7625.jpg',0),
+	(2, 'SR250', 2,1,7,1,4,1,1,1, 'Lenovo delivers engineered, tested and certified IT solutions that are high performance, scalable and cost-effective. By combining industry-leading x86 server technology and reliability.', 6329, 'SR250.jpg', 0);
+	
