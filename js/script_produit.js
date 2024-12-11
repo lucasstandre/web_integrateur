@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cpuValueElement.innerText = `${selectedCpu}x`;
         updatePrice();
         updateButtonStates();
+        ramImg();
     };
 
     const updatePrice = () => {
@@ -87,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
   
-    updateDisplay(); // update tt le temps
+    updateDisplay(); // update 
+  
 
     // RAM 
     document.getElementById('ram-decrease').addEventListener('click', () => {
@@ -133,6 +135,24 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDisplay();
         }
     });
+    function ramImg() {
+        let ram = document.getElementById('ram-value').innerText;
+        let img = document.getElementById('ramImg');
+        console.log(ram);
+        console.log(configValues.ram.min + 16+"GB");
+        if (ram === configValues.ram.min+"GB") {
+            img.src = "img/ram1.png";
+        }
+        else if (ram === (configValues.ram.min + 16)+"GB") {
+            img.src = "img/ram2.png";
+        }
+        else if (ram === (configValues.ram.min + 32)+"GB") {
+            img.src = "img/ram4.png";
+        }
+
+    
+    }
+    
 });
 
 function setCookie(cname, cvalue, exdays) {
@@ -153,4 +173,7 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+function deleteCookie(cname) {
+    document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
