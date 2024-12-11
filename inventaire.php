@@ -1,26 +1,25 @@
 <?php include_once("inc/header.php"); ?>
 <?php include_once("inc/footer.php"); 
 $vm = new ServeurManager(PDOFactory::getMySQLConnection());
+$serveurs = $vm->getServeur();
+$marques_filtre = $vm->getMarque();
+$comparerCookie = isset($_COOKIE['comparer']) ? $_COOKIE['comparer'] : '';
+$comparerArray = [];
+
+if ($comparerCookie){
+  $comparerArray = json_decode($comparerCookie, true);
+  if (!is_array($comparerArray)){
+    $comparerArray = [];
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
 <div>
     <h1>Votre serveur, notre expertise.</h1>
 </div>
-  <?php 
-  $serveurs = $vm->getServeur();
-  $marques_filtre = $vm->getMarque();
-  $comparerCookie = isset($_COOKIE['comparer']) ? $_COOKIE['comparer'] : '';
-  $comparerArray = [];
 
-  if ($comparerCookie){
-    $comparerArray = json_decode($comparerCookie, true);
-    if (!is_array($comparerArray)){
-      $comparerArray = [];
-    }
-  }
-  
-  ?>
 
   <div class="slider-container">
     <div class="slider">
@@ -41,7 +40,8 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
           } elseif ($count >= 2) {
               $dataContent = "2/2";
           }
-      } else {
+      } 
+      else {
           $dataContent = "Ajouter";
       }
 
@@ -52,7 +52,9 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
         <p>$marque</p>
         <p>Starting at $price $</p>
         </a>
-        <button class='button_Inventaire type1' onclick='comparer($server_id)' data-content='$dataContent'></button>
+        <button class='button_Inventaire type1 comparer-btn' 
+        data-id='$server_id' data-content='$dataContent'>
+        </button>
         </div>"; 
       }
 
@@ -79,7 +81,9 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
               }
                 ?>
             </select>
+            <br>
             <label for="min-price">Prix:</label>
+            <br>
             <input type="number" id="min-price" placeholder="MIN">
             <input type="number" id="max-price" placeholder="MAX">
             <button id="filter-btn">Apply Filter</button>

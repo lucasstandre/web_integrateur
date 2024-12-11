@@ -17,6 +17,13 @@ if (document.URL.includes("inventaire.php")) {
   checkbox.addEventListener('change', toggleFilter);
   filterBtn.addEventListener('click', applyFilter);
 
+  const comparerButtons = document.querySelectorAll('.comparer-btn');
+    comparerButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            handleComparer(id, button);
+        });
+    });
   updateArrows();
   function next() {
       currentIndex++;
@@ -41,7 +48,7 @@ if (document.URL.includes("inventaire.php")) {
       else {
           prevBtn.classList.remove('hidden');
       }      
-      if(currentIndex === visibleSlides - 1) {
+      if(currentIndex === visibleSlides - 2) {
           nextBtn.classList.add('hidden');
       }
       else {
@@ -109,7 +116,6 @@ if (document.URL.includes("inventaire.php")) {
       sliderContainer.classList.add('hidden');
   }
 
-      currentIndex = 0;
       updateSlider();
       updateArrows();
   }
@@ -137,63 +143,56 @@ function deleteCookie(cname) {
     setCookie(cname, '', -1);
 }
 
-window.comparer = function(id){
-  let comparerCookie = getCookie('comparer'); // Correct variable name
+function handleComparer(id, button) {
+  let comparerCookie = getCookie('comparer'); // prend les cookie
   let comparerArray = [];
-  
-  if (comparerCookie) { // Use comparerCookie instead of comparerData
-      try {
+
+  if (comparerCookie) { // si il y a des cookies
+      
           comparerArray = JSON.parse(comparerCookie);
-          // Ensure it's an array
+         // voit que cest bien un array
           if (!Array.isArray(comparerArray)) {
               comparerArray = [];
           }
-      } catch (e) {
-          comparerArray = [];
-      }
-  }
+      } 
   
-  // Remove duplicate if id already exists
+  
+  // enleve les double de array (fous code)
   comparerArray = comparerArray.filter(item => item !== id);
   
-  if (comparerArray.length === 0) {
-      // No items in comparer, add the first item
-      comparerArray.push(id);
-      setCookie('comparer', JSON.stringify(comparerArray), 1); // 1 day expiry
-      updateButtonContent(id, comparerArray.length);
-      // Optionally: window.location.reload();
-      alert('Produit ajouté au comparateur!');
-  } else if (comparerArray.length === 1) {
-      // One item in comparer, add the second and redirect
-      comparerArray.push(id);
-      setCookie('comparer', JSON.stringify(comparerArray), 1);
-      updateButtonContent(id, comparerArray.length);
-      // Redirect to comparaison.php
-      window.location.href = 'comparaison.php';
-  } else if (comparerArray.length >= 2) {
-      // Already two items, replace the last one with the new id and redirect
-      comparerArray.pop(); // Remove last item
-      comparerArray.push(id); // Add new item
-      setCookie('comparer', JSON.stringify(comparerArray), 1);
-      updateButtonContent(id, comparerArray.length);
-      // Redirect to comparaison.php
-      window.location.href = 'comparaison.php';
-  }
+  if (comparerArray.length < 2) {
+    //push le nouveau
+    comparerArray.push(id);
+    setCookie('comparer', JSON.stringify(comparerArray), 1); // set les cookies
+
+    updateAllButtons(comparerArray) // update le button pour mettre genre 1/2
+    
+    if (comparerArray.length === 2) {
+        window.location.href = 'comparaison.php'; // go to comparaison
+    } else {
+        alert('Produit' + $ + ' ajouté au comparateur!');
+    }
+} else {
+    // si c full remplace le dernier par lui que tu vient de mettre
+    comparerArray.pop();
+    comparerArray.push(id);
+    setCookie('comparer', JSON.stringify(comparerArray), 1);
+
+    updateAllButtons(comparerArray); // update le button pour mettre genre 1/2
+
+    window.location.href = 'comparaison.php'; // go to comparaison
+}
+
   
-  // Handle invalid cookie states (e.g., more than 2 items)
+  // si le cookie est plus gros que 2 (par normal)
   if (comparerArray.length > 2) {
-      comparerArray = comparerArray.slice(0, 2); // Keep only first two items
+      comparerArray = comparerArray.slice(0, 2); // prend juste les 2 premier
       setCookie('comparer', JSON.stringify(comparerArray), 1);
-      // Update buttons accordingly
-      comparerArray.forEach(comparerId => {
-          updateButtonContent(comparerId, comparerArray.length);
-      });
+      updateAllButtons(comparerArray); // update le button pour mettre genre 1/2
   }
 }
-function updateButtonContent(id, count) {
-  // Select the specific comparer button based on ID
-  const button = document.querySelector(`.button_Inventaire.type1[onclick="comparer(${id})"]`);
-  if (button) {
+/*
+function updateButton(button, count) {
       switch (count) {
           case 0:
               button.setAttribute('data-content', 'Ajouter');
@@ -210,22 +209,41 @@ function updateButtonContent(id, count) {
               break;
       }
   }
-}
-(function initializeComparer() {
-  const comparerData = getCookie('comparer');
-  let comparerArray = [];
-
-  if (comparerData) {
-      try {
-          comparerArray = JSON.parse(comparerData);
-          if (!Array.isArray(comparerArray)) {
-              comparerArray = [];
-          }
-      } catch (e) {
-          comparerArray = [];
-      }
+*/
+  function updateAllButtons(comparerArray) {
+    const comparerButtons = document.querySelectorAll('.comparer-btn'); // va les get
+    console.log(comparerArray.length);
+    comparerButtons.forEach(button => {
+       const buttonId = button.getAttribute('data-id');
+       console.log(buttonId);
+         if (comparerArray.length === 1) {
+            // In comparer, show as first
+            button.setAttribute('data-content', '1/2');
+            //console.log('1/2');
+        }
+        else if (comparerArray.length === 2) {
+            // In comparer, show as second
+            button.setAttribute('data-content', '2/2');
+            //console.log('1/2');
+        }
+     else {
+        // Not in comparer, show as available to add
+        button.setAttribute('data-content', 'Ajouter');
+      //  console.log('Ajouter');
+    }
+    });
   }
+    const initialComparer = getCookie('comparer');
+    if (initialComparer) {
+      const comparerArray = JSON.parse(initialComparer); // reprend larray initial et la compare
+      updateAllButtons(comparerArray);
+    }
 
+<<<<<<< HEAD
+ });
+/*
+document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
+=======
   // Update all comparer buttons based on comparerArray
   comparerArray.forEach(id => {
       updateButtonContent(id, comparerArray.length);
@@ -244,6 +262,7 @@ function updateButtonContent(id, count) {
 if (document.URL.includes("inventaire.php")) {
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
 
+>>>>>>> 07f15675f05af3582b506a342d007b8432725242
 function modeCouleur(){
     let div = document.getElementById("comparaison").children;
     
@@ -267,4 +286,10 @@ function modeCouleur(){
             }
         }
     }
+<<<<<<< HEAD
+  
+} A FAIRE
+*/
+=======
 }}});
+>>>>>>> 07f15675f05af3582b506a342d007b8432725242
