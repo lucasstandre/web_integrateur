@@ -189,6 +189,7 @@ fieldset.notVisible {
   }
   .slogan{
      background-color: var(--gris);
+     font-size: 20px;
   
    }
   
