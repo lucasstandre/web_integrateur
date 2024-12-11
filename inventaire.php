@@ -15,6 +15,8 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
 </header>
   <?php 
   $serveurs = $vm->getServeur();
+  $marques_filtre = $vm->getMarque();
+
   
   ?>
 
@@ -29,21 +31,21 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
         $price = $serveur->get_price();
         $imgName = $serveur->get_imgName();
         echo "<div class='slide' data-brand='$marque' data-price='$price'>
+        <a href='produit.php?id={$serveur->get_server_id()}'>
         <img src='./img/$imgName' alt='$model'>
         <h3>$model</h3>
         <p>$marque</p>
         <p>Starting at $$price</p>
+        </a>
         </div>"; 
       }
 
       ?>
     </div>
-    <!-- Moved buttons outside the slider div but still inside slider-container -->
     <button class="nav-btn prev">❮</button>
     <button class="nav-btn next">❯</button>
   </div>
 
-<!-- Filter Section -->
 <div class="filter-container">
   <input type="checkbox" id="checkbox">
     <label for="checkbox" class="toggle">
@@ -55,8 +57,11 @@ $vm = new ServeurManager(PDOFactory::getMySQLConnection());
             <label for="brand">Marque:</label>
             <select id="brand">
                 <option value="all">All</option>
-                <option value="Dell">DELL</option>
-                <option value="Lenovo">Lenovo</option>
+                <?php
+             foreach ($marques_filtre as $marque) { 
+                 echo "<option value='$marque'>$marque</option>";    
+              }
+                ?>
             </select>
             <label for="min-price">Prix:</label>
             <input type="number" id="min-price" placeholder="MIN">

@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.querySelector('.next');
   const checkbox = document.getElementById('checkbox');
   const filterBtn = document.getElementById('filter-btn');
-  let visibleSlides = 0;
+  let visibleSlides = slides.length; // prend les slide au debut et les diminue selon le filtre
 
   let currentIndex = 0;
   let servernbr = 0;
-  let slideWidth = slides[0].offsetWidth + 20; //
+  let slideWidth = slides[0].offsetWidth + 20; // 20px de margin
   nextBtn.addEventListener('click', next);
   prevBtn.addEventListener('click', prev);
   checkbox.addEventListener('change', toggleFilter);
@@ -97,8 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hasVisibleSlides) {
       sliderContainer.classList.remove('hidden');
       currentIndex = 0;
-      slider.style.transform = 'translateX(0)';
-            if (visibleSlides === 1) {
+          if (visibleSlides === 1) {
           prevBtn.classList.add('hidden');
           nextBtn.classList.add('hidden');
       } else {

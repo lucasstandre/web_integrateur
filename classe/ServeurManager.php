@@ -53,6 +53,8 @@ const SELECT_ALL_SERVEURS = "SELECT DISTINCT s.server_id,
                             INNER JOIN STORAGE as st ON s.storage_id = st.Storage_id
                             LEFT JOIN StorageInterface as sti ON st.interface_id = sti.storageInterface_id
                             INNER JOIN StorageType as stt ON st.type_id = stt.storageType_id";
+    const SELECT_MARQUES = "SELECT ServerBrand_id AS id, name FROM ServerBrand";
+
     public function __construct(PDO $bdd)
     {
         $this->_bdd = $bdd;
@@ -64,15 +66,72 @@ const SELECT_ALL_SERVEURS = "SELECT DISTINCT s.server_id,
         
         while($data = $bddResults->fetch(PDO::FETCH_ASSOC)) {
             $serveur = new Serveur([
-                'server_id' => $data['server_id'],
+               'server_id' => $data['server_id'],
                 'marque' => $data['marque'],
                 'model' => $data['model'],
+                'lineUp' => $data['lineUp'],
+                'formFactor' => $data['formFactor'],
+                'Os' => $data['Os'],
+                'CPU_brand' => $data['CPU_brand'],
+                'CPU_model' => $data['CPU_model'],
+                'CPU_baseClockSpeed' => $data['CPU_baseClockSpeed'],
+                'CPUCount' => $data['CPUCount'],
+                'RAM_capacity' => $data['RAM_capacity'],
+                'RAM_frequency' => $data['RAM_frequency'],
+                'RAMCount' => $data['RAMCount'],
+                'storage_capacity' => $data['storage_capacity'],
+                'storage_interface' => $data['storage_interface'],
+                'storage_type' => $data['storage_type'],
+                'storageCount' => $data['storageCount'],
+                'description' => $data['description'],
                 'price' => $data['price'],
                 'imgName' => $data['imgName'],
-                // Add other properties as needed
+                'hasGPU' => $data['hasGPU']
             ]);
             $serveurs[] = $serveur;
         }
         return $serveurs;
     }
+    public function getMarque() {
+        $marqueArray = array();
+        $dbResult = $this->_bdd->query(self::SELECT_MARQUES)->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($dbResult as $row) {
+            array_push($marqueArray, $row['name']); // Just push the name
+        }
+        
+        return $marqueArray;
+      }
+public function getServeurById($id) {
+    $query = $this->_bdd->prepare(self::SELECT_ALL_SERVEURS . " WHERE s.server_id = ?");
+    $query->execute([$id]);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+    
+    if ($data) {
+        return new Serveur([
+            'server_id' => $data['server_id'],
+            'marque' => $data['marque'],
+            'model' => $data['model'],
+            'lineUp' => $data['lineUp'],
+            'formFactor' => $data['formFactor'],
+            'Os' => $data['Os'],
+            'CPU_brand' => $data['CPU_brand'],
+            'CPU_model' => $data['CPU_model'],
+            'CPU_baseClockSpeed' => $data['CPU_baseClockSpeed'],
+            'CPUCount' => $data['CPUCount'],
+            'RAM_capacity' => $data['RAM_capacity'],
+            'RAM_frequency' => $data['RAM_frequency'],
+            'RAMCount' => $data['RAMCount'],
+            'storage_capacity' => $data['storage_capacity'],
+            'storage_interface' => $data['storage_interface'],
+            'storage_type' => $data['storage_type'],
+            'storageCount' => $data['storageCount'],
+            'description' => $data['description'],
+            'price' => $data['price'],
+            'imgName' => $data['imgName'],
+            'hasGPU' => $data['hasGPU']
+        ]);
+    }
+    return null;
+}
 };
