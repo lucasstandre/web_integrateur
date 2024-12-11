@@ -58,100 +58,21 @@ const SELECT_ALL_SERVEURS = "SELECT DISTINCT s.server_id,
         $this->_bdd = $bdd;
     }
 
-    public function getServeur(){
-        $bddResults =  $this->_bdd->query(self::SELECT_ALL_SERVEURS);
-        $serveurs = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($serveurs, new Serveur($fetchData));
+    public function getServeur() {
+        $bddResults = $this->_bdd->query(self::SELECT_ALL_SERVEURS);
+        $serveurs = [];
+        
+        while($data = $bddResults->fetch(PDO::FETCH_ASSOC)) {
+            $serveur = new Serveur([
+                'server_id' => $data['server_id'],
+                'marque' => $data['marque'],
+                'model' => $data['model'],
+                'price' => $data['price'],
+                'imgName' => $data['imgName'],
+                // Add other properties as needed
+            ]);
+            $serveurs[] = $serveur;
         }
-       return $serveurs;
-    }   
-    public function getMarque(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM ServerBrand");
-        $marques = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($marques, $fetchData);
-        }
-       return $marques;
-    }
-    public function getFormFactor(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM formFactor");
-        $formFactors = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($formFactors, $fetchData);
-        }
-       return $formFactors;
-    }
-    public function getOS(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM OS");
-        $OSs = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($OSs, $fetchData);
-        }
-       return $OSs;
-    }
-    public function getCPU(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM CPU");
-        $CPUs = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($CPUs, $fetchData);
-        }
-       return $CPUs;
-    }
-    public function getProcessorBrand(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM ProcessorBrand");
-        $processorBrands = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($processorBrands, $fetchData);
-        }
-       return $processorBrands;
-    }
-    public function getRAM(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM RAM");
-        $RAMs = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($RAMs, $fetchData);
-        }
-       return $RAMs;
-    }
-    public function getStorage(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM STORAGE");
-        $storages = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($storages, $fetchData);
-        }
-       return $storages;
-    }
-    public function getStorageInterface(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM StorageInterface");
-        $storageInterfaces = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($storageInterfaces, $fetchData);
-        }
-       return $storageInterfaces;
-    }
-    public function getStorageType(){
-        $bddResults =  $this->_bdd->query("SELECT * FROM StorageType");
-        $storageTypes = array();
-        while($fetchData = $bddResults->fetch()){
-                array_push($storageTypes, $fetchData);
-        }
-       return $storageTypes;
-    }
-    public function addServeur(Serveur $serveur){
-        $req = $this->_bdd->prepare("INSERT INTO Serveur (brand_id, model, formFactor_id, OS_id, CPU_id, RAM_id, storage_id, description, price, imgName, hasGPU) VALUES (:brand_id, :model, :formFactor_id, :OS_id, :CPU_id, :RAM_id, :storage_id, :description, :price, :imgName, :hasGPU)");
-        $req->execute(array(
-            'brand_id' => $serveur->getBrand_id(),
-            'model' => $serveur->getModel(),
-            'formFactor_id' => $serveur->getFormFactor_id(),
-            'OS_id' => $serveur->getOS_id(),
-            'CPU_id' => $serveur->getCPU_id(),
-            'RAM_id' => $serveur->getRAM_id(),
-            'storage_id' => $serveur->getStorage_id(),
-            'description' => $serveur->getDescription(),
-            'price' => $serveur->getPrice(),
-            'imgName' => $serveur->getImgName(),
-            'hasGPU' => $serveur->getHasGPU()
-        ));
+        return $serveurs;
     }
 };

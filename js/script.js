@@ -1,133 +1,118 @@
-// script.js
-class Slider {
-  constructor() {
-      // Initialize DOM elements and state
-      this.slider = document.querySelector('.slider');
-      this.prevBtn = document.querySelector('.prev');
-      this.nextBtn = document.querySelector('.next');
-      this.checkbox = document.getElementById('checkbox');
-      this.filterBtn = document.getElementById('filter-btn');
-      this.slides = document.querySelectorAll('.slide');
-      this.currentIndex = 0;
-      this.slideWidth = this.slides[0].offsetWidth + 20;
-      
-      this.init();
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.slider');
+  const sliderContainer = document.querySelector('.slider-container');
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  const checkbox = document.getElementById('checkbox');
+  const filterBtn = document.getElementById('filter-btn');
+  let visibleSlides = 0;
+
+  let currentIndex = 0;
+  let servernbr = 0;
+  let slideWidth = slides[0].offsetWidth + 20; //
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  checkbox.addEventListener('change', toggleFilter);
+  filterBtn.addEventListener('click', applyFilter);
+
+  updateArrows();
+  function next() {
+      currentIndex++;
+      updateSlider();
+      updateArrows();
+}
+
+  function prev() {
+      currentIndex--;
+      updateSlider();
+      updateArrows();
   }
 
-  init() {
-      this.setupClones();
-      this.setupControls();
-      this.bindEvents();
+  function updateSlider() {
+      slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
   }
 
-  setupClones() {
-      const clones = this.slider.querySelectorAll('.clone');
-      clones.forEach(clone => clone.remove());
-
-      this.slides = this.slider.querySelectorAll('.slide:not(.hidden)');
-      
-      if (this.slides.length > 0) {
-          this.slideWidth = this.slides[0].offsetWidth + 20;
-          const firstClone = this.slides[0].cloneNode(true);
-          const lastClone = this.slides[this.slides.length - 1].cloneNode(true);
-          
-          firstClone.classList.add('clone');
-          lastClone.classList.add('clone');
-          
-          this.slider.appendChild(firstClone);
-          this.slider.insertBefore(lastClone, this.slides[0]);
-          
-          this.resetPosition();
+  function updateArrows() {
+      if(currentIndex === 0) {
+          prevBtn.classList.add('hidden');
+      }
+      else {
+          prevBtn.classList.remove('hidden');
+      }      
+      if(currentIndex === visibleSlides - 1) {
+          nextBtn.classList.add('hidden');
+      }
+      else {
+          nextBtn.classList.remove('hidden');
       }
   }
 
-  setupControls() {
-      const hasMultipleSlides = this.slides.length > 1;
-      this.prevBtn.style.visibility = hasMultipleSlides ? 'visible' : 'hidden';
-      this.nextBtn.style.visibility = hasMultipleSlides ? 'visible' : 'hidden';
-  }
-
-  bindEvents() {
-      this.nextBtn.addEventListener('click', () => this.slideNext());
-      this.prevBtn.addEventListener('click', () => this.slidePrev());
-      this.checkbox.addEventListener('change', () => this.toggleFilter());
-      this.filterBtn.addEventListener('click', () => this.applyFilters());
-  }
-
-  slideNext() {
-      this.currentIndex++;
-      this.slide();
-      if (this.currentIndex >= this.slides.length) {
-          this.resetToStart();
-      }
-  }
-
-  slidePrev() {
-      this.currentIndex--;
-      this.slide();
-      if (this.currentIndex < 0) {
-          this.resetToEnd();
-      }
-  }
-
-  slide() {
-      this.slider.style.transition = 'transform 0.5s ease-in-out';
-      this.slider.style.transform = `translateX(-${this.slideWidth * (this.currentIndex + 1)}px)`;
-  }
-
-  resetPosition() {
-      this.currentIndex = 0;
-      this.slider.style.transition = 'none';
-      this.slider.style.transform = `translateX(-${this.slideWidth}px)`;
-  }
-
-  resetToStart() {
-      setTimeout(() => {
-          this.slider.style.transition = 'none';
-          this.currentIndex = 0;
-          this.slider.style.transform = `translateX(-${this.slideWidth}px)`;
-      }, 500);
-  }
-
-  resetToEnd() {
-      setTimeout(() => {
-          this.slider.style.transition = 'none';
-          this.currentIndex = this.slides.length - 1;
-          this.slider.style.transform = `translateX(-${this.slideWidth * (this.currentIndex + 1)}px)`;
-      }, 500);
-  }
-
-  toggleFilter() {
+  // Filter 
+  function toggleFilter() {
       const filterContent = document.querySelector('.filter-content');
-      if (this.checkbox.checked) {
+
+      if (checkbox.checked) {
           filterContent.classList.remove('hidden');
-          window.scrollTo({
+          window.scrollTo({ //scroll en bas
               top: document.documentElement.scrollHeight,
-              behavior: 'smooth'
+              behavior: 'smooth' //cool
           });
-      } else {
+      } 
+      else {
           filterContent.classList.add('hidden');
       }
   }
 
-  applyFilters() {
+  function applyFilter() {
+       visibleSlides = 0; // les slide visible
+      const totalSlides = slides.length; 
       const brand = document.getElementById('brand').value;
       const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
       const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+      let hasVisibleSlides = false;
+     
 
-      this.slides.forEach(slide => {
+      slides.forEach(slide => {
+     
           const slideBrand = slide.dataset.brand;
           const slidePrice = parseFloat(slide.dataset.price);
           
           const brandMatch = brand === 'all' || slideBrand === brand;
-          const priceMatch = slidePrice >= minPrice && (maxPrice === Infinity || slidePrice <= maxPrice);
+          const priceMatch = slidePrice >= minPrice && slidePrice <= maxPrice;
 
-          slide.classList.toggle('hidden', !(brandMatch && priceMatch));
+          if (brandMatch && priceMatch) {
+              slide.classList.remove('hidden');
+              hasVisibleSlides = true;
+              visibleSlides++;
+          }
+          else {
+              slide.classList.add('hidden');
+          }
+          
+
       });
-
-      this.setupClones();
+      console.log('Visible slides:', visibleSlides);
+      console.log('Total slides:', totalSlides);
+    if (hasVisibleSlides) {
+      sliderContainer.classList.remove('hidden');
+      currentIndex = 0;
+      slider.style.transform = 'translateX(0)';
+            if (visibleSlides === 1) {
+          prevBtn.classList.add('hidden');
+          nextBtn.classList.add('hidden');
+      } else {
+          prevBtn.classList.add('hidden');
+          nextBtn.classList.remove('hidden');
+      }
+  } else {
+      sliderContainer.classList.add('hidden');
   }
-}
 
-// Initialize slider when DOM is ready
-document.addEventListener('DOMContentLoaded', () => new Slider());
+      currentIndex = 0;
+      updateSlider();
+      updateArrows();
+  }
+
+
+});
