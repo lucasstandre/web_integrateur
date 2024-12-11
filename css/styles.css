@@ -7,11 +7,7 @@
 }
 
 
-* {
-word-wrap: break-word;
-font-family: 'CascadiaMono';
 
-}
 
 @font-face {
 font-family: 'CascadiaMono'; /* Name your font family */
@@ -21,6 +17,71 @@ src: url('../ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your 
 
 
 @media only screen and (max-width: 600px) {
+
+  /* inscription */
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connexion span {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.connexion input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.connexion a {
+    color: var(--bleu);
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.connexion a:hover {
+    text-decoration: underline;
+}
+
+.connexion button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.connexion button:hover {
+    background-color: var(--turquoise);
+}
 
   .hideScroll{
     overflow-y: hidden;
@@ -225,7 +286,7 @@ h1 {
 }
 
 .slide {
-  min-width: 300px; /*pas pourcentage marche pas */
+  min-width: 30%; /*pas pourcentage marche pas */
   flex: 0 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -234,15 +295,15 @@ h1 {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  position: relative; 
   align-items: center;
 }
 
 .slide img {
-  width: 30rem;
+  width: 20rem;
   height: auto; 
   object-fit: contain;
   border-radius: 8px;
-  background: white;
   margin-bottom: 15px;
 }
 
@@ -440,7 +501,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 
 .add-to-cart {
   padding: 10px 20px;
-  background: #28a745;
+  background: #002E4D;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -448,7 +509,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 }
 
 .add-to-cart:hover {
-  background: #218838;
+  background: #002E4D;
 }
 
 .total-price {
@@ -458,11 +519,91 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 
 /* Responsive Adjustments */
 @media (min-width: 600px) {
+  .mobile{
+    display: none;
+    opacity: 0;
+  }
+
+  /* connexion */
+  .BigContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    height: 100vh;
+    width: 100%;
+  }
+  .leftContainer {
+ /* Replace with the image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Optional: If you want to add text instead of an image */
+  .leftContainer{
+    color: white;
+    font-size: 3em;
+    text-align: center;
+  }
+  
+  /* Right side: form container */
+  .rightContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  
+  /* Form styles */
+  .form-container {
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .submitP {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  a {
+    display: block;
+    margin-top: 10px;
+    color: var(--bleu);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .submitP:hover {
+    background-color: var(--turquoise);
+  }
    
-    .mobile{
-      display: none;
-      opacity: 0;
-    }
+
     
     header.PC {
       position: fixed;
@@ -523,21 +664,67 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     }
 
 }
-.slide button{
-  
-}
+/* merci a 
+https://uiverse.io/Gaurav-WebDev/tame-hound-72
+pour le magnifique bouton*/
 .button_Inventaire {
   height: 50px;
   width: 150px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  bottom: 20px;
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff; /* Initial background */
 }
+
+/* ::before for "Comparer" Text */
+.button_Inventaire::before {
+  content: "Comparer";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  color: var(--turquoise);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ::after for Dynamic Content */
+.button_Inventaire::after {
+  content: attr(data-content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--turquoise);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.button_Inventaire:hover::after {
+  transform: translateY(0);
+}
+
+.button_Inventaire:hover::before {
+  transform: translateY(-100%);
+}
+
+/* Additional Styles */
 .button_Inventaire:hover {
-  box-shadow: .5px .5px 150px #252525;
+  box-shadow: 0.5px 0.5px 10px #252525;
 }
 
 .type1::after {
@@ -809,4 +996,131 @@ body{
   padding:15px;
   margin: 10px;
   right: 0px;
+}
+
+
+
+.pagePanier section {
+  display: grid;
+  grid-template-areas: ".panier .prix";
+  grid-template-columns: 70% 5%;
+  height: 80%;
+  color: var(--blanc);
+}
+
+.pagePanier section button {
+  border-radius: 15px;
+}
+
+.pagePanier div ul {
+  text-align: left;
+  list-style: none;
+  padding-left: 0%;
+}
+
+div.panier {
+  margin-left: 5%;
+  padding: 1%;
+  background-color: var(--grisfonce);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 100%;
+  gap: 10%;
+  overflow-x: scroll;
+}
+
+article.produit {
+  width: 140%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--bleu);
+  border: 0.25px solid black;
+  display: grid;
+  grid-template-rows: 3fr 0fr 2fr 8fr 2fr;
+}
+
+div.panier article.produit img {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+div.panier article.produit li, p {
+  color: var(--blanc);
+  margin-top: 20px;
+}
+
+.button {
+  grid-row-start: 6;
+}
+
+button.btnModifier, button.btnSupprimer {
+  width: 90%;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 2px;
+}
+
+div.prix {
+  grid-column-end: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.prix ul li {
+  border: 1px solid var(--grisfonce);
+  padding: 5px;
+}
+
+div.prix button#btnPaiement {
+  background-color: var(--bleu);
+  padding: 10px;
+  margin: 10px;
+}
+
+div.prix button#btnPaiement strong {
+  color: var(--blanc);
+}
+
+#formPanier {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+}
+
+#formPanier fieldset {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 3fr 9fr 3fr 9fr;
+  gap: 10%;
+  background-color: var(--bleu);
+  border: 1px solid var(--grisfonce);
+  padding: 40px;
+  padding-top: 10px;
+}
+
+#formPanier legend {
+  color: var(--blanc);
+  border: 1px solid var(--grisfonce);
+  background-color: var(--bleu);
+  padding: 2px;
+}
+
+#formPanier label {
+  color: var(--blanc);
+}
+
+#btnModifier {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  margin: 2px;
+  grid-column-start: 3;
+  grid-column-end: 5;
 }
