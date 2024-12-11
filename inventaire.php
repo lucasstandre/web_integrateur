@@ -49,9 +49,10 @@ if ($comparerCookie){
         <a href='produit.php?id={$serveur->get_server_id()}'>
         <img src='./img/$imgName' alt='$model'>
         <h3>$model</h3>
-        <p>$marque</p>
+        <h2>$marque</h2>
         <p>Starting at $price $</p>
         </a>
+        </br>
         <button class='button_Inventaire type1 comparer-btn' 
         data-id='$server_id' data-content='$dataContent'>
         </button>

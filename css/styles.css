@@ -440,7 +440,7 @@ left: 50%;
     grid-column-end: 4;
   }
   
-  div.panier article.produit li, p {
+  div.panier article.produit li,article.produit p {
     color: var(--blanc);
   }
 
@@ -540,12 +540,22 @@ h1 {
 .slider-container {
   position: relative;
   width: 90%;
-  height: 400px;
+  height: auto;
   margin: 0 auto;
   overflow: hidden;
   transition: width 0.3s ease-in-out;
   z-index: 1;
 }
+.slider-container p{
+  padding: 20px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.slider-container h3{
+  font-size: 35px;
+}
+
 .slider-container.filter-open {
   height: 30rem; /* largeur du carousel quand il ouvre */
   z-index: -1;
@@ -572,7 +582,7 @@ h1 {
 }
 
 .slide img {
-  width: auto;
+  width: 500px;
   max-width: 500px;
   height: auto; 
   max-height: 75%;
@@ -902,13 +912,13 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     cursor: pointer;
   }
   
-  a {
+ /* a {
     display: block;
     margin-top: 10px;
     color: var(--bleu);
     text-decoration: none;
   }
-  
+  */
   a:hover {
     text-decoration: underline;
   }
