@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-if (document.URL.includes("inventaire.php")) {
+  if (document.URL.includes("inventaire.php")) {
   const slider = document.querySelector('.slider');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
@@ -7,6 +7,7 @@ if (document.URL.includes("inventaire.php")) {
   const nextBtn = document.querySelector('.next');
   const checkbox = document.getElementById('checkbox');
   const filterBtn = document.getElementById('filter-btn');
+  const filterModal = document.querySelector('.filter-modal');
   let visibleSlides = slides.length; // prend les slide au debut et les diminue selon le filtre
 
   let currentIndex = 0;
@@ -59,9 +60,11 @@ if (document.URL.includes("inventaire.php")) {
   // Filter 
   function toggleFilter() {
       const filterContent = document.querySelector('.filter-content');
-
+      const sliderContainer = document.querySelector('.slider-container');
+     // const filterModal = document.querySelector('.filter-modal');
       if (checkbox.checked) {
           filterContent.classList.remove('hidden');
+          //sliderContainer.classList.add('filter-open'); // rajoute le filter open comme ca ca prend 70% moins de place
           window.scrollTo({ //scroll en bas
               top: document.documentElement.scrollHeight,
               behavior: 'smooth' //cool
@@ -69,6 +72,8 @@ if (document.URL.includes("inventaire.php")) {
       } 
       else {
           filterContent.classList.add('hidden');
+          sliderContainer.classList.remove('filter-open');
+
       }
   }
 
@@ -217,17 +222,16 @@ function updateButton(button, count) {
        const buttonId = button.getAttribute('data-id');
        console.log(buttonId);
          if (comparerArray.length === 1) {
-            // In comparer, show as first
             button.setAttribute('data-content', '1/2');
             //console.log('1/2');
         }
         else if (comparerArray.length === 2) {
-            // In comparer, show as second
+            
             button.setAttribute('data-content', '2/2');
             //console.log('1/2');
         }
      else {
-        // Not in comparer, show as available to add
+        
         button.setAttribute('data-content', 'Ajouter');
       //  console.log('Ajouter');
     }
@@ -239,30 +243,11 @@ function updateButton(button, count) {
       updateAllButtons(comparerArray);
     }
 
-<<<<<<< HEAD
- });
+ }
+});
 /*
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
-=======
-  // Update all comparer buttons based on comparerArray
-  comparerArray.forEach(id => {
-      updateButtonContent(id, comparerArray.length);
-  });
 
-  // Handle invalid comparer states
-  if (comparerArray.length > 2) {
-      comparerArray = comparerArray.slice(0, 2);
-      setCookie('comparer', JSON.stringify(comparerArray), 1);
-      // Update buttons accordingly
-      comparerArray.forEach(id => {
-          updateButtonContent(id, comparerArray.length);
-      });
-  }
-})();}
-if (document.URL.includes("inventaire.php")) {
-document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
-
->>>>>>> 07f15675f05af3582b506a342d007b8432725242
 function modeCouleur(){
     let div = document.getElementById("comparaison").children;
     
@@ -286,10 +271,6 @@ function modeCouleur(){
             }
         }
     }
-<<<<<<< HEAD
   
-} A FAIRE
-*/
-=======
-}}});
->>>>>>> 07f15675f05af3582b506a342d007b8432725242
+} 
+    */

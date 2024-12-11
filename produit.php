@@ -29,8 +29,8 @@ $base_price = $serveur->get_price();
         <div class="product-image">
             <img src="./img/<?= $serveur->get_imgName() ?>" alt="<?= $serveur->get_model() ?>">
 
-        <div id="imgram">
-            <img src="./img/ram.png" alt="RAM" id="ramImg">
+        <div id="imgram" >
+            <img src="./img/ram.png" alt="RAM" id="ramImg" class="ImgRam">
         </div>
         </div>
         <div class="product-info">
@@ -80,18 +80,19 @@ $base_price = $serveur->get_price();
                 <p>Marque: <?= $serveur->get_CPU_brand() ?></p>
                 <p>Model: <?= $serveur->get_CPU_model() ?></p>
                 <p>Base Clock Speed: <?= $serveur->get_CPU_baseClockSpeed() ?> GHz</p>
-            <div class="description">
+            </div>
+                <div class="description">
                 <h3>Description</h3>
                 <p><?= $serveur->get_description() ?></p>
-            
+                </div>
+               
             <div class="total-price">
                 Prix Total:<span id="total-price"><?= $base_price?> </span>
                 $
             </div>
 
             <button onclick="addToCart()" class="add-to-cart">Add to Cart</button>
-        </div>
-    </div>
+
 </body>
 </html>
 

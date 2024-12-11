@@ -71,6 +71,7 @@ if ($comparerCookie){
         <div class="bars" id="bar2"></div>
         <div class="bars" id="bar3"></div>
     </label>
+    
         <div class="filter-content hidden">
             <label for="brand">Marque:</label>
             <select id="brand">
