@@ -52,7 +52,7 @@
 
     </section>
 
-    <form action="" id="formPanier" class="">
+    <form action="" id="formPanier" class="hidden">
 
         <fieldset>
 

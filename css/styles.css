@@ -180,23 +180,173 @@ src: url('../ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your 
   }
   .product-container {
     grid-template-columns: 1fr;
-}
+  }
 
 .config-item {
     flex-direction: column;
     align-items: flex-start;
-}
+  }
 
 .config-item label {
     text-align: left;
     padding-right: 0;
     margin-bottom: 5px;
-}
+  }
 
 .config-item select {
     width: 100%;
-}
+  }
+
+
+  /******** Cart.php ********/
+  .pagePanier section {
+    display: grid;
+    grid-template-areas:
+    ".panier"
+    ".prix";
+    grid-template-rows: 55% 45%;
+    height: 80%;
+    color: var(--blanc);
+  }
   
+  .pagePanier section button {
+    border-radius: 15px;
+  }
+  
+  div.panier {
+    margin-left: 5%;
+    padding: 1%;
+    background-color: var(--grisfonce);
+    color: white;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: 100%;
+    gap: 5%;
+    overflow-y: scroll;
+  }
+  
+  article.produit {
+    margin: auto;
+    width: 95%;
+    height: 60%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--bleu);
+    border: 0.25px solid black;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    grid-template-columns: 3fr 0fr 2fr;
+    grid-template-areas:
+    "p br img"
+    "ul . div";
+  }
+  
+  article.produit ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    list-style: none;
+    padding-left: 0%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  article.produit {
+    align-content: end;
+    margin-bottom: 10px;
+  }
+
+  div.panier article.produit img {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    margin-top: 10px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+  
+  div.panier article.produit li, p {
+    color: var(--blanc);
+  }
+
+  div.panier article.produit p {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+  button.btnModifier, button.btnSupprimer {
+    width: 90%;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin: 2px;
+  }
+  
+  div.prix {
+    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  div.prix ul li {
+    border: 1px solid var(--grisfonce);
+    padding: 5px;
+  }
+  
+  div.prix ul li strong {
+    color: black;
+  }
+  
+  div.prix button#btnPaiement {
+    background-color: var(--bleu);
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  div.prix button#btnPaiement strong {
+    color: var(--blanc);
+  }
+  
+  #formPanier {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #formPanier fieldset {
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 9fr 3fr 9fr;
+    gap: 10%;
+    background-color: var(--bleu);
+    border: 1px solid var(--grisfonce);
+    padding: 40px;
+    padding-top: 10px;
+  }
+  
+  #formPanier legend {
+    color: var(--blanc);
+    border: 1px solid var(--grisfonce);
+    background-color: var(--bleu);
+    padding: 2px;
+  }
+  
+  #formPanier label {
+    color: var(--blanc);
+  }
+  
+  #btnModifier {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin: 2px;
+    grid-column-start: 3;
+    grid-column-end: 5;
+  }
+
 }
 
 
@@ -298,8 +448,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
-
-
 
 .filter-content label {
   font-weight: bold;
@@ -747,69 +895,11 @@ th{
   }
 }
 @media only screen and (min-width: 1100px) {
-body{
-  min-width:980px;
-}
-}
+  body{
+    min-width:980px;
+  }
 
-/********* Index.php ***********/
-#imgServeur{
-  width: 100%;
-}
-.index{
-  min-height: 95vh;
-  background-image:url(../img/serveur.webp);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  animation-name: switch1;
-  animation-iteration-count: infinite;
-   animation-delay: -3s;
-   animation-duration: 15s;
-}
-@keyframes switch1 {
-  0% {
-     background-image: url(../img/serveur.webp);
-  }
-  11% {
-    background-image: url(../img/fond2.jpg);
-  }
-  33% {
-     background-image: url(../img/fond2.jpg);
-  }
-  44% {
-    background-image: url(../img/fond1.jpeg);
-  }
-  66% {
-     background-image: url(../img/fond1.jpeg);
-  }
-  77% {
-     background-image: url(../img/serveur.webp);
-  }
-  100% {
-     background-image: url(../img/serveur.webp);
-  }
-}
-.titre{
-  max-width: fit-content;
-  background-color: white;
-  margin: 0px;
-  padding: 5px;
-  size: 1250%;
-}
-.buttonIndex{
-  padding:15px;
-  margin: 10px;
-  right: 0px;
-}
-
-
-
+  /********** Cart.php ***********/
 .pagePanier section {
   display: grid;
   grid-template-areas: ".panier .prix";
@@ -886,6 +976,10 @@ div.prix ul li {
   padding: 5px;
 }
 
+div.prix ul li strong {
+  color: black;
+}
+
 div.prix button#btnPaiement {
   background-color: var(--bleu);
   padding: 10px;
@@ -934,3 +1028,63 @@ div.prix button#btnPaiement strong {
   grid-column-start: 3;
   grid-column-end: 5;
 }
+
+}
+
+/********* Index.php ***********/
+#imgServeur{
+  width: 100%;
+}
+.index{
+  min-height: 95vh;
+  background-image:url(../img/serveur.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  animation-name: switch1;
+  animation-iteration-count: infinite;
+   animation-delay: -3s;
+   animation-duration: 15s;
+}
+@keyframes switch1 {
+  0% {
+     background-image: url(../img/serveur.webp);
+  }
+  11% {
+    background-image: url(../img/fond2.jpg);
+  }
+  33% {
+     background-image: url(../img/fond2.jpg);
+  }
+  44% {
+    background-image: url(../img/fond1.jpeg);
+  }
+  66% {
+     background-image: url(../img/fond1.jpeg);
+  }
+  77% {
+     background-image: url(../img/serveur.webp);
+  }
+  100% {
+     background-image: url(../img/serveur.webp);
+  }
+}
+.titre{
+  max-width: fit-content;
+  background-color: white;
+  margin: 0px;
+  padding: 5px;
+  size: 1250%;
+}
+.buttonIndex{
+  padding:15px;
+  margin: 10px;
+  right: 0px;
+}
+
+

@@ -123,3 +123,4 @@ Values
 	(1, 'R7625', 1, 1,6,1,2,1,1,1, 'Highly scalable rack server with 50% more cores and up to 6 GPUs, combining powerful performance andflexible configuration ideal for data analytics, all flash SDS and VDI', 8099, 'R7625.jpg',0);
 
 
+dbserver
