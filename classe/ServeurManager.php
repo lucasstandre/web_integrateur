@@ -55,6 +55,14 @@ const SELECT_ALL_SERVEURS = "SELECT DISTINCT s.server_id,
                             INNER JOIN StorageType as stt ON st.type_id = stt.storageType_id";
     const SELECT_MARQUES = "SELECT ServerBrand_id AS id, name FROM ServerBrand";
 
+
+    const SELECT_ALL_MODELS = "SELECT model FROM serveur ORDER BY model ASC";
+
+    const SELECT_ALL_PRICES= "SELECT price FROM serveur ORDER BY price ASC";
+    const SELECT_ALL_FORMS= "SELECT formFactor_id, name FROM formfactor ORDER BY formFactor_id ASC";
+    const TAILLES_FILTER = "s.formFactor_id = :taille";
+    const PRIX_FILTER = "s.price < :prix";
+
     public function __construct(PDO $bdd)
     {
         $this->_bdd = $bdd;
@@ -90,8 +98,54 @@ const SELECT_ALL_SERVEURS = "SELECT DISTINCT s.server_id,
             ]);
             $serveurs[] = $serveur;
         }
-        return $serveurs;
+       return $serveurs;
+    }  
+    public function selectAllModeles(): array
+    {
+        return $this->_bdd->query(self::SELECT_ALL_MODELS)->fetchAll();
     }
+    public function selectAllPrices(): array
+    {
+        return $this->_bdd->query(self::SELECT_ALL_PRICES)->fetchAll();
+    }
+    public function selectAllFormFactors(): array
+    {
+        return $this->_bdd->query(self::SELECT_ALL_FORMS)->fetchAll();
+    }
+    public function selectModeles(array $formArray): array
+    {
+        $modeleArray = array();
+        $bindParam = array();
+        $whereClause = '';
+
+        if (isset($formArray['taille']) && $formArray['taille'] != 'Toutes') {
+            $whereClause .= self::TAILLES_FILTER;
+            $bindArray[":taille"] = $formArray['taille'];
+        }
+        if (isset($formArray['prix']) && $formArray['prix'] != 0) {
+            if (!empty($whereClause)) {
+                $whereClause .= " AND ";
+            }
+
+            $whereClause .= self::PRIX_FILTER;
+            $bindArray[":prix"] = $formArray['prix'];
+        }
+        if (empty($whereClause))
+            $dbResult = $this->_bdd->query(self::SELECT_ALL_SERVEURS)->fetchAll();
+        else {
+            $query = $this->_bdd->prepare(self::SELECT_ALL_SERVEURS . ' WHERE ' . $whereClause);
+
+            $query->execute($bindArray);
+
+            $dbResult = $query->fetchAll();
+        }
+
+        foreach ($dbResult as $row) {
+            array_push($modeleArray, new Serveur($row) );
+        }
+        return $modeleArray;
+    } 
+
     public function getMarque() {
         $marqueArray = array();
         $dbResult = $this->_bdd->query(self::SELECT_MARQUES)->fetchAll(PDO::FETCH_ASSOC);
