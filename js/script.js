@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+if (document.URL.includes("inventaire.php")) {
   const slider = document.querySelector('.slider');
   const sliderContainer = document.querySelector('.slider-container');
   const slides = document.querySelectorAll('.slide');
@@ -239,8 +240,8 @@ function updateButtonContent(id, count) {
           updateButtonContent(id, comparerArray.length);
       });
   }
-})();
-  
+})();}
+if (document.URL.includes("inventaire.php")) {
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
 
 function modeCouleur(){
@@ -266,4 +267,4 @@ function modeCouleur(){
             }
         }
     }
-}});
+}}});
