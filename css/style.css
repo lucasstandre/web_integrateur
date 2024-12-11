@@ -1,4 +1,4 @@
-* {
+/* {
     box-sizing: border-box;
 }
 
@@ -16,7 +16,7 @@ main {
     min-height:95vh;
     padding-bottom:15px;
 }
-
+*/
 
 /* Page comparaison */
 .comparaisonImage{

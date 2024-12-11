@@ -2,17 +2,12 @@
 <?php include_once("inc/footer.php"); 
 $vm = new ServeurManager(PDOFactory::getMySQLConnection());
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Server Slider with Filter</title>
-  <link rel="stylesheet" href="./css/styles.css">
-</head>
-<header>
+
+<div>
     <h1>Votre serveur, notre expertise.</h1>
-</header>
+</div>
   <?php 
   $serveurs = $vm->getServeur();
   $marques_filtre = $vm->getMarque();
