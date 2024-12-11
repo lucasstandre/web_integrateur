@@ -25,6 +25,71 @@ src: url('ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your dir
 
 @media only screen and (max-width: 600px) {
 
+  /* inscription */
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connexion span {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.connexion input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.connexion a {
+    color: var(--bleu);
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.connexion a:hover {
+    text-decoration: underline;
+}
+
+.connexion button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.connexion button:hover {
+    background-color: var(--turquoise);
+}
+
   .hideScroll{
     overflow-y: hidden;
     overflow-x: hidden;
@@ -459,11 +524,91 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
 
 /* Responsive Adjustments */
 @media (min-width: 600px) {
+  .mobile{
+    display: none;
+    opacity: 0;
+  }
+
+  /* connexion */
+  .BigContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    height: 100vh;
+    width: 100%;
+  }
+  .leftContainer {
+ /* Replace with the image path */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Optional: If you want to add text instead of an image */
+  .leftContainer{
+    color: white;
+    font-size: 3em;
+    text-align: center;
+  }
+  
+  /* Right side: form container */
+  .rightContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  
+  /* Form styles */
+  .form-container {
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .submitP {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bleu);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  a {
+    display: block;
+    margin-top: 10px;
+    color: var(--bleu);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .submitP:hover {
+    background-color: var(--turquoise);
+  }
    
-    .mobile{
-      display: none;
-      opacity: 0;
-    }
+
     
     header.PC {
       position: fixed;
