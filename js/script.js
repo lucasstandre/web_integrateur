@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+if (document.URL.includes("inventaire.php")) {document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.slider');
     const sliderContainer = document.querySelector('.slider-container');
     const slides = document.querySelectorAll('.slide');
@@ -114,7 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
   
-  });
+  });}
+if (document.URL.includes("comparaison.php")) {
+
 document.getElementById("btn-Couleur").addEventListener("click", modeCouleur);
 
 
@@ -141,4 +143,5 @@ function modeCouleur(){
             }
         }
     }
+}
 }
