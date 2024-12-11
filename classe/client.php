@@ -11,8 +11,8 @@ class Client
     private $_nom_rue;
     private $_ville;
     private $_province_ID;
-    private $_code_postale;
-    private $_province_Name;
+    private $_code_postal;
+    private $_province_name;
     
 
         private $_reservationArray = array();
@@ -39,8 +39,8 @@ class Client
             "nom_rue"=> $this->_nom_rue,
             "ville"=> $this->_ville,
             "province_ID"=> $this->_province_ID,
-            "code_postale"=> $this->_code_postale,
-            "province_name"=> $this->_province_Name,
+            "code_postal"=> $this->_code_postal,
+            "province_name"=> $this->_province_name,
             "reservationArray" => $this->_reservationArray
         ];
     }
@@ -55,107 +55,86 @@ class Client
         $this->_nom_rue = $data["nom_rue"];
         $this->_ville = $data["ville"];
         $this->_province_ID = $data["province_ID"];
-        $this->_code_postale = $data["code_postale"];
-        $this->_province_Name = $data["province_name"];
+        $this->_code_postal = $data["code_postal"];
+        $this->_province_name = $data["province_name"];
         $this->_reservationArray = $data["reservationArray"]; 
     }
 
-    public function addReservation($reservation) {
-        array_push($this->_reservationArray, $reservation);
-    }
-
-    
-    /**
-     * Get the value of _reservation
-     */ 
-    public function get_reservationArray()
-    {
-        return $this->_reservationArray;
-    }
-
-
-    public function set_reservationArray($_reservation)
-    {
-        array_push($this->_reservationArray, $_reservation);
-
-        return $this;
-    }
-
-    public function getUserID() {
+    public function get_userID() {
       return $this->_userID;
     }
-    public function setUserID($value) {
+    public function set_userID($value) {
       $this->_userID = $value;
     }
 
-    public function getMdp() {
+    public function get_mdp() {
       return $this->_mdp;
     }
-    public function setMdp($value) {
+    public function set_mdp($value) {
       $this->_mdp = $value;
     }
 
-    public function getAdresse_ID() {
+    public function get_adresse_ID() {
       return $this->_adresse_ID;
     }
-    public function setAdresse_ID($value) {
+    public function set_adresse_ID($value) {
       $this->_adresse_ID = $value;
     }
 
-    public function getNom() {
+    public function get_nom() {
       return $this->_nom;
     }
-    public function setNom($value) {
+    public function set_nom($value) {
       $this->_nom = $value;
     }
 
-    public function getEmail() {
+    public function get_email() {
       return $this->_email;
     }
-    public function setEmail($value) {
+    public function set_email($value) {
       $this->_email = $value;
     }
 
-    public function getNumero_rue() {
+    public function get_numero_rue() {
       return $this->_numero_rue;
     }
-    public function setNumero_rue($value) {
+    public function set_numero_rue($value) {
       $this->_numero_rue = $value;
     }
 
-    public function getNom_rue() {
+    public function get_nom_rue() {
       return $this->_nom_rue;
     }
-    public function setNom_rue($value) {
+    public function set_nom_rue($value) {
       $this->_nom_rue = $value;
     }
 
-    public function getVille() {
+    public function get_ville() {
       return $this->_ville;
     }
-    public function setVille($value) {
+    public function set_ville($value) {
       $this->_ville = $value;
     }
 
-    public function getProvince_ID() {
+    public function get_province_ID() {
       return $this->_province_ID;
     }
-    public function setProvince_ID($value) {
+    public function set_province_ID($value) {
       $this->_province_ID = $value;
     }
 
-    public function getCode_postale() {
-      return $this->_code_postale;
+    public function get_code_postal() {
+      return $this->_code_postal;
     }
-    public function setCode_postale($value) {
-      $this->_code_postale = $value;
+    public function set_code_postal($value) {
+      $this->_code_postal = $value;
     }
 
-    public function getProvince_Name() {
-      return $this->_province_Name;
+    public function get_province_name() {
+      return $this->_province_name;
     }
-    public function setProvince_Name($value) {
-      $this->_province_Name = $value;
+    public function set_province_name($value) {
+      $this->_province_name = $value;
     }
     
 

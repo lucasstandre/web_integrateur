@@ -21,6 +21,7 @@ $bdd = PDOFactory::getMySQLConnection();
     <title>INTEGRATEUR</title>
     <script src="js/script.js" defer></script>
     <script src="js/header.js" defer></script>
+    <script src="js/connexion.js" defer></script>
 </head>
 
 <body>

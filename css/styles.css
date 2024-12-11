@@ -10,32 +10,43 @@
 
 
 @font-face {
-font-family: 'CascadiaMono'; 
-src: url('../ressources/CascadiaMono.ttf'); 
+font-family: 'CascadiaMono'; /* Name your font family */
+src: url('../ressources/CascadiaMono.ttf'); /* Locate the .ttf file within your directory*/
 }
   
 
 
 @media only screen and (max-width: 600px) {
 
-  /* inscription */
-  .filter-content{
-    z-index: 5000;
-  }
-
+  /* inscription et inscription */
   .container {
+    margin: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20%;
+ 
 }
 
-.form-container {
+.mobile fieldset {
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+.mobile input {
     width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#province_id {
+  width: 106%;
+  padding: 10px;
 }
 
 .connexion {
@@ -70,20 +81,38 @@ src: url('../ressources/CascadiaMono.ttf');
     text-decoration: underline;
 }
 
-.connexion button {
+.submitP {
     width: 100%;
     padding: 10px;
     background-color: var(--bleu);
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .connexion button:hover {
     background-color: var(--turquoise);
+}
+fieldset {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  position: absolute;
+  width: 100%;
+
+}
+
+fieldset.visible {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative; 
+}
+
+fieldset.notVisible {
+  opacity: 0;
+  transform: translateX(200%);
+  pointer-events: none;
 }
 
   .hideScroll{
@@ -846,8 +875,34 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     display: none;
     opacity: 0;
   }
+/*inscription et connexion */
 
-  /* connexion */
+.leftContainer fieldset{
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateX(100%);
+}
+fieldset {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  position: absolute;
+  width: 100%;
+
+}
+
+fieldset.visible {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative; 
+}
+
+fieldset.notVisible {
+  opacity: 0;
+  transform: translateX(200%);
+  pointer-events: none;
+}
+
   .BigContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;  
@@ -855,7 +910,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     width: 100%;
   }
   .leftContainer {
- /* Replace with the image path */
+
     background-size: cover;
     background-position: center;
     display: flex;
@@ -863,14 +918,13 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     align-items: center;
   }
   
-  /* Optional: If you want to add text instead of an image */
   .leftContainer{
     color: white;
     font-size: 3em;
     text-align: center;
   }
   
-  /* Right side: form container */
+
   .rightContainer {
     display: flex;
     justify-content: center;
@@ -878,7 +932,7 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     background-color: #f4f4f4;
   }
   
-  /* Form styles */
+
   .form-container {
     background-color: white;
     padding: 30px;
@@ -894,12 +948,17 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     font-size: 24px;
   }
   
-  input {
+  .PC input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+  }
+
+  #province_ID {
+    width: 106%;
+    padding: 10px;
   }
   
   .submitP {
@@ -912,14 +971,14 @@ https://uiverse.io/vinodjangid07/soft-octopus-29
     cursor: pointer;
   }
   
- /* a {
+  .rightContainer a {
     display: block;
     margin-top: 10px;
     color: var(--bleu);
     text-decoration: none;
   }
-  */
-  a:hover {
+  
+  .rightContainer a:hover {
     text-decoration: underline;
   }
   .submitP:hover {
